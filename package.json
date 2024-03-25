@@ -1,0 +1,28 @@
+{
+  "name": "cse341finalproject",
+  "version": "1.0.0",
+  "description": "Final Project for CSE 341",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kateaeryn/CSE341FinalProject.git"
+  },
+  "author": "David Aviles, Christopher Aceituno, Kate Christensen, Patrick Armani, Sigrid Vidal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kateaeryn/CSE341FinalProject/issues"
+  },
+  "homepage": "https://github.com/kateaeryn/CSE341FinalProject#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3",
+    "nodemon": "^3.1.0",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

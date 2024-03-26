@@ -1,21 +1,24 @@
 {
   "name": "cse341finalproject",
   "version": "1.0.0",
-  "description": "",
+
+  "description": "Final Project for CSE 341",
   "main": "server.js",
+  "author": "David Aviles, Christopher Aceituno, Kate Christensen, Patrick Armani, Sigrid Vidal",
+  "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "mongodb": "^6.5.0",
+    "mongoose": "^8.2.3",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
     "swagger-autogen": "^2.23.7",
@@ -24,5 +27,6 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
+
   }
 }

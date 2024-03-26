@@ -5,19 +5,19 @@
     "description": "An online grocery store",
     "version": "1.0.11"
   },
-  "servers": [
-    {
-      "url": "localhost:5500"
-    }
+  "host": "localhost:5500",
+  "basePath": "/",
+  "schemes": [
+    "http"
   ],
   "tags": [
     {
       "name": "inventory",
-      "description": "Access to inventory items, full list, by category and by individual product"
+      "description": "Access to inventory items: full list, by category and by individual product"
     },
     {
         "name": "orders",
-        "description": "Access to place, view, edit or delete orders"
+        "description": "Access to orders: place, view, edit or delete orders"
     },
     {
       "name": "account",
@@ -77,6 +77,18 @@
             },
             "404": {
                 "description": "product not found"
+            }
+            }
+        },
+        "post": {
+          "tags": ["inventory"],
+          "description": "create new inventory item",
+          "responses": {
+            "200": {
+                "description": "successful operation"
+            },
+            "422": {
+                "description": "product not created"
             }
             }
         }
@@ -158,10 +170,10 @@
         }
       }
     },
-    "/order": {
+    "/orders": {
       "post": {
         "tags": [
-          "order"
+          "orders"
         ],
         "description": "place a new grocery order",
         "responses": {
@@ -177,10 +189,10 @@
         }
       }
     },
-    "/order/{orderId}": {
+    "/orders/{orderId}": {
       "get": {
         "tags": [
-          "order"
+          "orders"
         ],
         "description": "get a specific order by id",
         "parameters": [
@@ -205,7 +217,7 @@
       },
       "delete": {
         "tags": [
-          "order"
+          "orders"
         ],
         "description": "delete an order",
         "parameters": [
@@ -227,11 +239,10 @@
             "description": "Order not found"
           }
         }
-      }
-    },
+      },
     "put": {
         "tags": [
-          "order"
+          "orders"
         ],
         "description": "edit an order",
         "parameters": [
@@ -255,12 +266,49 @@
         }
       }
     },
-    "/account": {
+  "/account": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "description": "create list of all accounts",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "error accessing account list"
+          }
+        }
+      },
       "post": {
         "tags": [
           "account"
         ],
         "description": "create a new account",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+              }
+            }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation"
@@ -271,6 +319,7 @@
         }
       }
     },
+    
     "/account/login": {
       "get": {
         "tags": [
@@ -303,6 +352,19 @@
         }
       }
     },
+    "/account/logout": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "description": "log user out of account",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/account/{username}":{
       "get": {
         "tags": [
@@ -319,38 +381,7 @@
           "404": {
             "description": "no account found with that username"
           }
-        }
-    },
-    "/account/logout": {
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "description": "log user out of account",
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/account/all": {
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "description": "create list of all accounts",
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "404": {
-            "description": "error accessing account list"
-          }
-        }
-      }
-    },
-    "/account/update/{username}": {
+        },
       "put": {
         "tags": [
           "account"
@@ -412,7 +443,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    }
+  },
     "/reviews": {
       "post": {
         "tags": [
@@ -515,5 +548,4 @@
     }
       }
     }
-  }
     

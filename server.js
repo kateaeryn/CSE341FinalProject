@@ -1,10 +1,11 @@
+
 /**************************
  * Require Statements
  *************************/
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 3000;
 const dataBase = require('./models');
 //const session = require('express-session');
 

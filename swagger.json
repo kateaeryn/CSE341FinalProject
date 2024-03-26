@@ -12,37 +12,81 @@
   ],
   "tags": [
     {
-      "name": "store",
-      "description": "Access to orders and inventory"
+      "name": "inventory",
+      "description": "Access to inventory items, full list, by category and by individual product"
+    },
+    {
+        "name": "orders",
+        "description": "Access to place, view, edit or delete orders"
     },
     {
       "name": "account",
       "description": "Operations about user"
-    }
+    },
+    {
+        "name": "reviews",
+        "description": "Access to write, edit or delete reviews"
+    }   
   ],
   "paths": {
-    "/inventory": {
+    "/": {
       "get": {
-        "tags": [
-          "inventory"
-        ],
-        "description": "",
+        "description": "Store front",
         "responses": {
           "200": {
             "description": "successful operation"
+          },
+          "404": {
+            "description": "page not found"
           }
         }
       }
     },
+    "/inventory/{categoryId}": {
+        "get": {
+            "tags": ["inventory"],
+        "description": "Provides list of inventory categories",
+        "parameters": [
+            {
+                "name": "categoryId",
+                "in": "path",
+                "required": true,
+                "type": "string"
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "category not found"
+          }
+        }
+      }
+    },
+    "/inventory":{
+        "get": {
+        "tags": ["inventory"],
+        "description": "All inventory available in the store",
+        "responses": {
+            "200": {
+                "description": "successful operation"
+            },
+            "404": {
+                "description": "product not found"
+            }
+            }
+        }
+        },
     "/inventory/{productId}": {
       "get": {
         "tags": [
           "inventory"
         ],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "description": "loads products by id",
         "parameters": [
           {
             "name": "productId",
@@ -67,16 +111,19 @@
         "tags": [
           "inventory"
         ],
-        "description": "",
+        "description": "delete an inventory item",
         "parameters": [
           {
             "name": "productId",
             "in": "path",
             "required": true,
-              "type": "integer"
+              "type": "string"
           }
         ],
         "responses": {
+            "200": {
+                "description": "Item successfully deleted"
+            },
           "400": {
             "description": "Invalid ID supplied"
           },
@@ -89,7 +136,7 @@
         "tags": [
           "inventory"
         ],
-        "description": "",
+        "description": "edit an inventory item",
         "parameters": [
           {
             "name": "productId",
@@ -99,18 +146,24 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful update"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "product not found"
           }
         }
       }
     },
-    "/store/order": {
+    "/order": {
       "post": {
         "tags": [
           "order"
         ],
-        "description": "",
+        "description": "place a new grocery order",
         "responses": {
           "200": {
             "description": "successful operation"
@@ -129,13 +182,13 @@
         "tags": [
           "order"
         ],
-        "description": "",
+        "description": "get a specific order by id",
         "parameters": [
           {
             "name": "orderId",
             "in": "path",
             "required": true,
-              "type": "integer"
+              "type": "string"
           }
         ],
         "responses": {
@@ -154,16 +207,19 @@
         "tags": [
           "order"
         ],
-        "description": "",
+        "description": "delete an order",
         "parameters": [
           {
             "name": "orderId",
             "in": "path",
             "required": true,
-              "type": "integer"
+              "type": "string"
           }
         ],
         "responses": {
+            "200": {
+                "description": "successful deletion"
+            },
           "400": {
             "description": "Invalid ID supplied"
           },
@@ -177,16 +233,19 @@
         "tags": [
           "order"
         ],
-        "description": "",
+        "description": "edit an order",
         "parameters": [
           {
             "name": "orderId",
             "in": "path",
             "required": true,
-              "type": "integer"
+              "type": "string"
           }
         ],
         "responses": {
+            "200": {
+                "description": "successful update"
+            },
           "400": {
             "description": "Invalid ID supplied"
           },
@@ -201,10 +260,13 @@
         "tags": [
           "account"
         ],
-        "description": "",
+        "description": "create a new account",
         "responses": {
-          "default": {
+          "200": {
             "description": "successful operation"
+          },
+          "422": {
+            "description": "validation exception"
           }
         }
       }
@@ -214,7 +276,7 @@
         "tags": [
           "account"
         ],
-        "description": "",
+        "description": "log in to user account",
         "parameters": [
           {
             "name": "username",
@@ -233,36 +295,8 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "headers": {
-              "X-Rate-Limit": {
-                "description": "calls per hour allowed by the user",
-                "schema": {
-                  "type": "integer",
-                  "format": "int32"
-                }
+            "description": "successful operation"
               },
-              "X-Expires-After": {
-                "description": "date in UTC when token expires",
-                "schema": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              }
-            },
-            "content": {
-              "application/xml": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Invalid username/password supplied"
           }
@@ -274,11 +308,16 @@
         "tags": [
           "account"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "Access account information",
         "responses": {
-          "default": {
+          "200": {
             "description": "successful  operation"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "no account found with that username"
           }
         }
     },
@@ -287,10 +326,9 @@
         "tags": [
           "account"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "log user out of account",
         "responses": {
-          "default": {
+          "200": {
             "description": "successful operation"
           }
         }
@@ -301,18 +339,13 @@
         "tags": [
           "account"
         ],
-        "summary": "Get list of all accounts",
-        "description": "",
-        "operationId": "getUsers",
+        "description": "create list of all accounts",
         "responses": {
           "200": {
             "description": "successful operation"
           },
-          "400": {
-            "description": "Invalid username supplied"
-          },
           "404": {
-            "description": "User not found"
+            "description": "error accessing account list"
           }
         }
       }
@@ -322,23 +355,30 @@
         "tags": [
           "account"
         ],
-        "summary": "Update user",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "updateAccount",
+        "description": "Edit user account",
         "parameters": [
           {
             "name": "username",
             "in": "path",
-            "description": "name that need to be deleted",
             "required": true,
-            "schema": {
               "type": "string"
-            }
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -346,62 +386,98 @@
         "tags": [
           "account"
         ],
-        "summary": "Delete user account",
-        "description": "This can only be done by the logged in user.",
-        "operationId": "deleteUser",
+        "description": "deleting a user account",
         "parameters": [
           {
             "name": "username",
             "in": "path",
-            "description": "The name that needs to be deleted",
             "required": true,
-            "schema": {
               "type": "string"
-            }
           }
         ],
         "responses": {
-          "400": {
-            "description": "Invalid username supplied"
+          "200": {
+            "description": "OK"
           },
-          "404": {
-            "description": "User not found"
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
-    },
+      },
     "/reviews": {
-      "get": {
+      "post": {
         "tags": [
           "reviews"
         ],
-        "description": "",
-        "responses": {
+        "description": "create a review for a grocery item",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "productName": {
+                        },
+                        "price": {},
+                        "label": {},
+                        "category": {},
+                        "sizeOptions": {},
+                        "SKU": {},
+                        "productImage": {}
+                    }
+                }
+            }
+        ],
+       "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
-    },
+      },
       "delete": {
         "tags": [
           "reviews"
         ],
-        "description": "",
+        "description": "delete a review",
         "parameters": [
           {
             "name": "reviewId",
             "in": "path",
             "required": true,
-              "type": "integer"
+              "type": "string"
           }
         ],
         "responses": {
+            "200": {
+                "description": "successful deletion"
+            },
           "400": {
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "product not found"
+            "description": "review not found"
           }
         }
       },
@@ -409,7 +485,7 @@
         "tags": [
           "reviews"
         ],
-        "description": "",
+        "description": "edit a review",
         "parameters": [
           {
             "name": "reviewId",
@@ -419,10 +495,25 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     }
+      }
+    }
   }
+    

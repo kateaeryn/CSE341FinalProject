@@ -9,4 +9,22 @@ router.use('/', require('./swagger'));
 
 router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 
+//inventory routes
+
+
+
+//order routes
+
+
+
+//review routes
+
+
+
+
+//account routes
+
+
+
+
 module.exports = router;

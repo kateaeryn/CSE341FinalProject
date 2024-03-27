@@ -11,7 +11,7 @@ router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 
 //inventory routes
 
-
+router.use("/inventory", require("./inventory"));
 
 //order routes
 

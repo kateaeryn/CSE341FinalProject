@@ -381,7 +381,8 @@
           "404": {
             "description": "no account found with that username"
           }
-        },
+        }
+      },
       "put": {
         "tags": [
           "account"
@@ -444,8 +445,7 @@
           }
         }
       }
-    }
-  },
+    },
     "/reviews": {
       "post": {
         "tags": [

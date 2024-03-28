@@ -1,0 +1,26 @@
+[
+    {
+        "userName": "KDaniels",
+        "productName": "Lucky Charms",
+        "productId": "0004",
+        "reviewText": "Love this cereal, great way to start the day!"
+    },
+    {
+        "userName": "CLennart",
+        "productName": "Steak",
+        "productId": "0005",
+        "reviewText": "Meat. It's what's for dinner."
+    },
+    {
+        "userName": "MThompson",
+        "productName": "Eggs",
+        "productId": "0001",
+        "reviewText": "I never have enough eggs, why don't they sell more than 1 dozen together?"
+    },
+    {
+        "userName": "AHauptman",
+        "productName": "Flour",
+        "productId": "0002",
+        "reviewText": "Whelp, it's flour, not much to say about that."
+    }
+]

@@ -1,0 +1,36 @@
+[
+    {
+    "userName": "Clennart",
+    "items": [{
+        "itemId": "660594d07efa1afc2f66eecb",
+        "name": "Steak",
+        "quantity": "2",
+        "price": "12.68"
+    },
+    {
+        "itemId": "660594d07efa1afc2f66eec9",
+        "name": "Apples",
+        "quantity": "3",
+        "price": "1.45"
+    }
+    ],
+    "orderTotal": "29.71"
+    },
+    {
+        "userName": "MThompson",
+        "items": [{
+            "itemId": "660594d07efa1afc2f66eec7",
+            "name": "Eggs",
+            "quantity": "1",
+            "price": "2.35"
+        },
+    {
+        "itemId": "660594d07efa1afc2f66eec8",
+        "name": "Flour",
+        "quantity": "1",
+        "price": "4.65"
+    }],
+    "orderTotal": "7.00"
+    }
+    
+]

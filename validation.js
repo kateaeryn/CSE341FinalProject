@@ -11,7 +11,7 @@ validator.inventoryRules = () => {
             .isLength({ min: 2 }),
         check("sizeOptions", "Product must have size listed")
             .isLength({ min: 2 }),
-        check("SKU", "Product must be assigned a SKU")
+        check("productId", "Product must be assigned an Id")
             .isLength({ min: 4 })
     ]
 };

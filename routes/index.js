@@ -12,20 +12,22 @@ router.use('/', require('./swagger'));
 router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 
 //inventory routes
-router.put('/inventory/{productId}', vInventory, isAuthenticated, invCont.updateProduct);
+router.get('/inventory', invCont.getAllInventory);
+
+router.put('/inventory/:id', vInventory, invCont.updateProduct);
 
 
 //order routes
-router.put('/orders/{orderId}', vOrder, isAuthenticated, ordCont.updateOrder);
+router.put('/orders/:id', vOrder, isAuthenticated, ordCont.updateOrder);
 
 
 //review routes
-router.put('/reviews/{reviewId}', vReview, isAuthenticated, revCont.updateReview);
+router.put('/reviews/:id', vReview, isAuthenticated, revCont.updateReview);
 
 
 
 //account routes
-router.put('account/{username}', vAccount, isAuthenticated, accCont.updateAccount);
+router.put('account/:id', vAccount, isAuthenticated, accCont.updateAccount);
 
 
 

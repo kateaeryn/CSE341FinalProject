@@ -4,12 +4,12 @@ const validator = require('./validator.js');
 const vInventory = (req, res, next) => {
     const validationRule = {
         productName: 'required|string',
-        price: 'required|number',
-        label: 'required|string',
+        price: 'required|numeric',
+        label: 'string',
         category: 'required|string',
-        sizeOptions: 'required|number',
-        SKU: 'required|number',
-        productImage: 'required|string'
+        sizeOptions: 'required|string',
+        productId: 'required|numeric',
+        productImage: 'string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -25,9 +25,9 @@ const vInventory = (req, res, next) => {
 };
 const vOrder = (req, res, next) => {
     const validationRule = {
-        userName: 'required|ObjectID',
+        userName: 'required|string',
         items: 'required|Array',
-        orderTotal: 'required|number'
+        orderTotal: 'required|numeric'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -62,7 +62,7 @@ const vAccount = (req, res, next) => {
 };
 const vReview = (req, res, next) => {
     const validationRule = {
-        userName: 'required|ObjectID',
+        userName: 'required|string',
         productName: 'required|string',
         productId: 'required|string',
         reviewText: 'required|string'

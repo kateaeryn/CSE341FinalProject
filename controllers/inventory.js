@@ -1,5 +1,20 @@
 const Inventory = require('../models/inventory.js');
 
+const getAllInventory = (req, res, next) => {
+    //#swagger.tags=[inventory]
+    Inventory.find({})
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: err.message || 'There was an issue retrieving the inventory'
+            })
+        
+        });
+    
+};
+
 const updateProduct = async (req, res, next) => {
     //#swaggers.tags=[inventory]
     const productId = req.params.id;
@@ -17,4 +32,4 @@ const updateProduct = async (req, res, next) => {
         });
 };
 
-module.exports = { updateProduct };
+module.exports = { updateProduct, getAllInventory };

@@ -1,9 +1,10 @@
-
+###Inventory
 ###get all inventory
 GET http://localhost:3000/inventory
 
 ###create new product
 POST http://localhost:3000/inventory HTTP/1.1
+constent-type: application/json
 
 {
     "productName": "",
@@ -17,14 +18,24 @@ POST http://localhost:3000/inventory HTTP/1.1
 }
 
 ###get single product
-GET http://localhost:3000/inventory{productId}
+GET http://localhost:3000/inventory/{productId}
 
 ###delete inventory item
-DELETE http://localhost:3000/inventory{productId} HTTP/1.1
+DELETE http://localhost:3000/inventory/{productId} HTTP/1.1
 
 ###edit inventory item
-PUT http://localhost:3000/inventory{productId} HTTP/1.1
+PUT http://localhost:3000/inventory/6605b308922386e05db88a93 HTTP/1.1
+content-type: application/json
 
+{
+     "productName": "Eggs",
+        "price": "2.45",
+        "label": "",
+        "category": "dairy",
+        "sizeOptions": "1 dozen",
+        "productId": "0001",
+        "productImage": ""
+}
 
 #####Orders
 ###get order by id
@@ -32,6 +43,7 @@ GET http://localhost:3000/orders/{orderId}
 
 ###create order
 POST http://localhost:3000/orders HTTP/1.1
+content-type: application/json
 
 {
    "userName": "",
@@ -53,6 +65,7 @@ POST http://localhost:3000/orders HTTP/1.1
 
 ###edit order
 PUT http://localhost:3000/{orderId} HTTP/1.1
+content-type: application/json
 
 {
 "userName": "CLennart",
@@ -78,6 +91,8 @@ GET http://localhost:3000/account
 
 ###create account
 POST http://localhost:3000/account HTTP/1.1
+content-type: application/json
+
 {
      "firstName": "Charles",
         "lastName": "Marrok",
@@ -92,6 +107,8 @@ POST http://localhost:3000/account HTTP/1.1
 
 ###edit account
 PUT http://localhost:3000/account/{username} HTTP/1.1
+content-type: application/json
+
 {
      "firstName": "Charles",
         "lastName": "Smith",
@@ -100,7 +117,7 @@ PUT http://localhost:3000/account/{username} HTTP/1.1
 }
 
 ###delete account
-DELETE http://localhost:3000/account{username} HTTP/1.1
+DELETE http://localhost:3000/account/{username} HTTP/1.1
 
 
 ###Reviews
@@ -108,7 +125,8 @@ DELETE http://localhost:3000/account{username} HTTP/1.1
 POST http://localhost:3000/reviews HTTP/1.1
 
 ###edit review
-PUT http://localhost:3000/reviews{reviewId} HTTP/1.1
+PUT http://localhost:3000/reviews/{reviewId} HTTP/1.1
+content-type: application/json
 
 {
         "userName": "KDaniels",

@@ -1,5 +1,6 @@
 const Inventory = require('../models/inventory.js');
 
+
 const updateProduct = async (req, res, next) => {
     //#swaggers.tags=[inventory]
     const productId = req.params.id;

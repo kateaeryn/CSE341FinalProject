@@ -12,7 +12,7 @@ router.use('/', require('./swagger'));
 router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 
 //inventory routes
-router.get('/inventory', invCont.getAllInventory);
+
 
 router.put('/inventory/:id', vInventory, invCont.updateProduct);
 

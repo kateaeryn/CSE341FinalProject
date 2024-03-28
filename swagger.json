@@ -42,31 +42,6 @@
         }
       }
     },
-    "/inventory/{categoryId}": {
-        "get": {
-            "tags": ["inventory"],
-        "description": "Provides list of inventory categories",
-        "parameters": [
-            {
-                "name": "categoryId",
-                "in": "path",
-                "required": true,
-                "type": "string"
-            }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "category not found"
-          }
-        }
-      }
-    },
     "/inventory":{
         "get": {
         "tags": ["inventory"],
@@ -489,6 +464,7 @@
           }
         }
       },
+      "/reviews/{reviewId}": {
       "delete": {
         "tags": [
           "reviews"
@@ -548,4 +524,4 @@
     }
       }
     }
-    
+  }

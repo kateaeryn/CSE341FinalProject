@@ -1,0 +1,56 @@
+[
+    {
+        "productName": "Eggs",
+        "price": "2.35",
+        "label": "",
+        "category": "dairy",
+        "sizeOptions": "1 dozen",
+        "productId": "0001",
+        "productImage": ""
+    },
+    {
+        "productName": "Flour",
+        "price": "4.65",
+        "label": "",
+        "category": "Baking",
+        "sizeOptions": "5 lb",
+        "productId": "0002",
+        "productImage": ""
+    },
+    {
+        "productName": "Apples",
+        "price": "1.45",
+        "label": "",
+        "category": "produce",
+        "sizeOptions": "1 lb",
+        "productId": "0003",
+        "productImage": ""
+    },
+    {
+        "productName": "Lucky Charms",
+        "price": "4.99",
+        "label": "",
+        "category": "cereal",
+        "sizeOptions": "23 oz",
+        "productId": "0004",
+        "productImage": ""
+    },
+    {
+        "productName": "Steak",
+        "price": "12.68",
+        "label": "",
+        "category": "meat",
+        "sizeOptions": "3 lb",
+        "productId": "0005",
+        "productImage": ""
+    },
+    {
+        "productName": "Green Beans",
+        "price": "1.25",
+        "label": "",
+        "category": "Canned Goods",
+        "sizeOptions": "10 oz",
+        "productId": "0006",
+        "productImage": ""
+    }
+]

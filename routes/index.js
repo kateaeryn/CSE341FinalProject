@@ -13,21 +13,27 @@ router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 
 //inventory routes
 
-
+router.post('/inventory', vInventory, invCont.newProduct);
 router.put('/inventory/:id', vInventory, invCont.updateProduct);
 
 
 //order routes
-router.put('/orders/:id', vOrder, isAuthenticated, ordCont.updateOrder);
+
+router.post('/orders', vOrder, ordCont.newOrder)
+router.put('/orders/:id', vOrder, ordCont.updateOrder);
 
 
 //review routes
-router.put('/reviews/:id', vReview, isAuthenticated, revCont.updateReview);
+
+router.post('/reviews', vReview, revCont.newReview);
+router.put('/reviews/:id', vReview, revCont.updateReview);
 
 
 
 //account routes
-router.put('account/:id', vAccount, isAuthenticated, accCont.updateAccount);
+
+router.post('/account', vAccount, accCont.newAccount);
+router.put('account/:id', vAccount, accCont.updateAccount);
 
 
 

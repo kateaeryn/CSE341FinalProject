@@ -10,8 +10,8 @@ const inventorySchema = mongoose.Schema({
         required: true
     },
     label: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true
     },
     category: {
         type: String,
@@ -26,8 +26,8 @@ const inventorySchema = mongoose.Schema({
         required: true
     },
     productImage: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required:true
     }
 
 

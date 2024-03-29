@@ -5,11 +5,11 @@ const vInventory = (req, res, next) => {
     const validationRule = {
         productName: 'required|string',
         price: 'required|numeric',
-        label: 'string',
+        label: 'required|string',
         category: 'required|string',
         sizeOptions: 'required|string',
         productId: 'required|numeric',
-        productImage: 'string'
+        productImage: 'required|string'
     };
     validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
@@ -26,7 +26,7 @@ const vInventory = (req, res, next) => {
 const vOrder = (req, res, next) => {
     const validationRule = {
         userName: 'required|string',
-        items: 'required|Array',
+        items: 'required|array',
         orderTotal: 'required|numeric'
     };
     validator(req.body, validationRule, {}, (err, status) => {

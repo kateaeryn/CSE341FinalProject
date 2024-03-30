@@ -1,7 +1,16 @@
 const Inventory = require('../models/inventory.js');
 
+
+const getAll = async (req, res) => {
+    //#swagger.tags=['Look at all our groceries. 🛒']
+    const groceries = await Inventory.find();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(groceries);
+  };
+  
+
 const newProduct = async (req, res) => {
-    //#swagger.tags=[inventory]
+    //#swagger.tags=['Look at all our groceries. 🛒']
     if (!req.body.productName || !req.body.price || !req.body.category || !req.body.sizeOptions || !req.body.productId||!req.body.label||!req.body.productImage) {
         res.status(400).send({ message: 'Must include name, price, category, size, and product Id' });
         return;
@@ -18,20 +27,34 @@ const newProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res, next) => {
-    //#swaggers.tags=[inventory]
+    //#swagger.tags=['Look at all our groceries. 🛒']
     const productId = req.params.id;
     if (!productId) {
-        res.status(400).json('Must use valid product id to update item.');
+      res.status(400).json('Must use valid product id to update item.');
     }
 
-    Inventory.findOneAndUpdate(req.body)
-        .then((data) => {
-            console.log(data);
-            res.status(200).send(data);
-        })
-        .catch((err) => {
-            res.status(500).send({ message: err.message || 'Something went wrong with the update' });
-        });
-};
+    const price = parseFloat(req.body.price);
+    if (isNaN(price)) {
+      return res.status(400).json('Price must be a valid number.');
+    }
 
-module.exports = { newProduct, updateProduct };
+    const groceries = {
+      productName: req.body.productName,
+      price: price,
+      label: req.body.label,
+      category: req.body.category,
+      sizeOptions: req.body.sizeOptions,
+      productId: req.body.productId,
+      productImage: req.body.productImage
+    };
+  
+    try {
+      const updatedProduct = await Inventory.findOneAndUpdate({ _id: productId }, groceries, { new: true });
+      console.log(updatedProduct);
+      res.status(200).send(updatedProduct);
+    } catch (err) {
+      res.status(500).send({ message: err.message || 'Something went wrong with the update' });
+    }
+  };
+  
+module.exports = { newProduct, updateProduct, getAll };

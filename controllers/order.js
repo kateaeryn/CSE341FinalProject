@@ -2,7 +2,7 @@ const Order = require('../models/orders.js');
 
 
 const newOrder = async (req, res) => {
-    //#swagger.tags=[orders]
+     //#swagger.tags=[Your orders]
     if (!req.body.userName || !req.body.items || !req.body.orderTotal) {
         res.status(400).send({ message: 'Must include username, items and total' });
         return;
@@ -20,7 +20,7 @@ const newOrder = async (req, res) => {
 
 
 const updateOrder = async (req, res) => {
-    //#swagger.tags=[orders]
+    //#swagger.tags=[Your orders]
     const orderId = req.params.id;
     if (!orderId) {
         res.status(400).json('Must use valid order id to update order.');

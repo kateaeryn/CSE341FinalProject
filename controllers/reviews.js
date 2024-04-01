@@ -36,4 +36,19 @@ const updateReview = async (req, res) => {
     
 };
 
-module.exports = {newReview, updateReview};
+const deleteReview = async (req, res) => {
+    const reviewId = req.params.id;
+    if (!reviewId) {
+        res.status(400).json('Must use a valid review id to delete.');
+        return;
+    }
+
+    try {
+        await Review.findByIdAndDelete(reviewId);
+        res.status(200).json({ message: 'Review deleted successfully.' });
+    } catch (err) {
+        res.status(500).json({ message: err.message || 'Something went wrong with the deletion.' });
+    }
+};
+
+module.exports = {newReview, updateReview, deleteReview};

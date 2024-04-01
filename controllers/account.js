@@ -33,4 +33,20 @@ const updateAccount = async (req, res) => {
             res.status(500).send({ message: err.message || 'Something went wrong with the update' });
         });
 };
-module.exports = {newAccount,updateAccount};
+
+const deleteAccount = async (req, res) => {
+    const accountId = req.params.id;
+    if (!accountId) {
+        res.status(400).json('Must use a valid account id to delete.');
+        return;
+    }
+
+    try {
+        await Account.findByIdAndDelete(accountId);
+        res.status(200).json({ message: 'Account deleted successfully.' });
+    } catch (err) {
+        res.status(500).json({ message: err.message || 'Something went wrong with the deletion.' });
+    }
+};
+
+module.exports = {newAccount,updateAccount,deleteAccount};

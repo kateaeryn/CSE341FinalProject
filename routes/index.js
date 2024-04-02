@@ -40,7 +40,7 @@ router.delete('/orders/:id', isAuthenticated, ordCont.deleteOrder);
 
 
 //review routes
-
+router.get('./reviews/:id', vReview, revCont.getReviewById);
 router.post('/reviews', isAuthenticated, vReview, revCont.newReview);
 router.put('/reviews/:id', isAuthenticated, vReview, revCont.updateReview);
 router.delete('/reviews/:id', isAuthenticated, revCont.deleteReview);
@@ -48,6 +48,7 @@ router.delete('/reviews/:id', isAuthenticated, revCont.deleteReview);
 
 
 //account routes
+router.get('./account/:id', isAuthenticated, vAccount, accCont.accountAccess);
 router.post('/account', isAuthenticated, vAccount, accCont.newAccount);
 router.put('account/:id', isAuthenticated, vAccount, accCont.updateAccount);
 router.delete('/account/:id', isAuthenticated, accCont.deleteAccount);

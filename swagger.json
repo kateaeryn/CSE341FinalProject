@@ -5,10 +5,12 @@
     "description": "Library API",
     "version": "1.0.0"
   },
-  "host": "cse341finalproject-t6hq.onrender.com",
+  
+  "host":  "localhost:5500",
   "basePath": "/",
   "schemes": [
-    "https"
+    
+  "http"
   ],
   "paths": {
     "/login": {
@@ -173,11 +175,39 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Look at all our groceries. 🛒"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/orders": {
       "get": {
-        "tags": [],
+        "tags": ["Order Up!"],
         "description": "",
         "responses": {
           "200": {
@@ -192,7 +222,7 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": ["Order Up!"],
         "description": "",
         "parameters": [
           {
@@ -235,7 +265,7 @@
     },
     "/orders/{id}": {
       "put": {
-        "tags": [],
+        "tags": ["Order Up!"],
         "description": "",
         "parameters": [
           {
@@ -262,11 +292,37 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "delete": {
+        "tags": ["Order Up!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/reviews": {
       "post": {
-        "tags": [],
+        "tags": ["Review it here!"],
         "description": "",
         "parameters": [
           {
@@ -312,7 +368,7 @@
     },
     "/reviews/{id}": {
       "put": {
-        "tags": [],
+        "tags": ["Review it here!"],
         "description": "",
         "parameters": [
           {
@@ -339,11 +395,58 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "get": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/account": {
       "post": {
-        "tags": [],
+        "tags": ["Account Access"],
         "description": "",
         "parameters": [
           {
@@ -388,8 +491,30 @@
       }
     },
     "account/{id}": {
+      "get": {
+        "tags": ["Account Access"],
+        "description": "Access account details",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+
       "put": {
-        "tags": [],
+        "tags": ["Account Access"],
         "description": "",
         "parameters": [
           {
@@ -411,6 +536,33 @@
           },
           "412": {
             "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      
+      "delete": {
+        "tags": ["Account Access"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"

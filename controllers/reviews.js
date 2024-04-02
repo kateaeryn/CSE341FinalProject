@@ -1,5 +1,16 @@
 const Review = require('../models/reviews.js');
 
+const getReviewById = async (req, res) => {
+    //#swagger.tags[reviews]
+    const reviewId = req.params.id;
+    Review.find({ _id: reviewId })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message || "Something went wrong getting the reviews" })
+        });
+};
 
 const newReview = async (req, res) => {
     //#swagger.tags=[reviews]
@@ -51,4 +62,4 @@ const deleteReview = async (req, res) => {
     }
 };
 
-module.exports = {newReview, updateReview, deleteReview};
+module.exports = {newReview, updateReview, deleteReview, getReviewById};

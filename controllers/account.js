@@ -1,5 +1,16 @@
 const Account = require('../models/account.js');
 
+const accountAccess = async (req, res) => {
+    const accountId = req.params.id;
+    Account.find({ _id: accountId })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message || 'Something went wrong accessing the account' })
+        });
+};
+
 const newAccount = async (req, res) => {
     //#swagger.tags=[accounts]
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
@@ -49,4 +60,4 @@ const deleteAccount = async (req, res) => {
     }
 };
 
-module.exports = {newAccount,updateAccount,deleteAccount};
+module.exports = {newAccount,updateAccount,deleteAccount, accountAccess};

@@ -56,5 +56,20 @@ const updateProduct = async (req, res, next) => {
       res.status(500).send({ message: err.message || 'Something went wrong with the update' });
     }
   };
+
+  const deleteProduct = async (req, res) => {
+    const productId = req.params.id;
+    if (!productId) {
+        res.status(400).json('Must use a valid product id to delete.');
+        return;
+    }
+
+    try {
+        await Inventory.findByIdAndDelete(productId);
+        res.status(200).json({ message: 'Product deleted successfully.' });
+    } catch (err) {
+        res.status(500).json({ message: err.message || 'Something went wrong with the deletion.' });
+    }
+};
   
-module.exports = { newProduct, updateProduct, getAll };
+module.exports = { newProduct, updateProduct, getAll, deleteProduct };

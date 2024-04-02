@@ -29,24 +29,28 @@ router.get('/', (req, res) => { res.send('Welcome to the little BIG Store') });
 router.get('/inventory', invCont.getAll); 
 router.post('/inventory', isAuthenticated, vInventory, invCont.newProduct);
 router.put('/inventory/:id', isAuthenticated, vInventory, invCont.updateProduct);
+router.delete('/inventory/:id', isAuthenticated, invCont.deleteProduct);
 
 
 //order routes
 router.get('/orders', ordCont.newOrder)
 router.post('/orders', isAuthenticated, vOrder, ordCont.newOrder)
 router.put('/orders/:id', isAuthenticated, vOrder, ordCont.updateOrder);
+router.delete('/orders/:id', isAuthenticated, ordCont.deleteOrder);
 
 
 //review routes
 
 router.post('/reviews', isAuthenticated, vReview, revCont.newReview);
 router.put('/reviews/:id', isAuthenticated, vReview, revCont.updateReview);
+router.delete('/reviews/:id', isAuthenticated, revCont.deleteReview);
 
 
 
 //account routes
 router.post('/account', isAuthenticated, vAccount, accCont.newAccount);
 router.put('account/:id', isAuthenticated, vAccount, accCont.updateAccount);
+router.delete('/account/:id', isAuthenticated, accCont.deleteAccount);
 
 
 

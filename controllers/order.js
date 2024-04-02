@@ -36,4 +36,19 @@ const updateOrder = async (req, res) => {
     
 };
 
-module.exports = {newOrder, updateOrder};
+const deleteOrder = async (req, res) => {
+    const orderId = req.params.id;
+    if (!orderId) {
+        res.status(400).json('Must use a valid order id to delete.');
+        return;
+    }
+
+    try {
+        await Order.findByIdAndDelete(orderId);
+        res.status(200).json({ message: 'Order deleted successfully.' });
+    } catch (err) {
+        res.status(500).json({ message: err.message || 'Something went wrong with the deletion.' });
+    }
+};
+
+module.exports = {newOrder, updateOrder, deleteOrder};

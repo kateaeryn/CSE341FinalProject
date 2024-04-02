@@ -6,11 +6,11 @@
     "version": "1.0.0"
   },
   
-  "host":  "localhost:5500",
+  "host":  "https://cse341finalproject-fmos.onrender.com",
   "basePath": "/",
   "schemes": [
     
-  "http"
+  "https"
   ],
   "paths": {
     "/login": {

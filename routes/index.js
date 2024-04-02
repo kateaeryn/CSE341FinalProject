@@ -8,7 +8,7 @@ const { isAuthenticated } = require('../middleware/authenticate');
 const passport = require('passport');
 
 //login route
-router.get('/login', passport.authenticate('github'), (req, res) => {});
+router.get('/login', passport.authenticate('github'), (req, res) => { });
 
 //logout route
 router.get('/logout', function (req, res, next) {

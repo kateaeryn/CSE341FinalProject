@@ -6,7 +6,7 @@
     "version": "1.0.0"
   },
   
-  "host":  "cse341finalproject-fmos.onrender.com",
+  "host": "cse341finalproject-t6hq.onrender.com",
   "basePath": "/",
   "schemes": [
     
@@ -569,16 +569,7 @@
           }
         }
       }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
     }
+    
   }
 }

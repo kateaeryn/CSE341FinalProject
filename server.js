@@ -18,12 +18,18 @@ const GitHubStrategy = require('passport-github2').Strategy;
  * Middleware
  **************************/
 app.use(bodyParser.json())
-    .use(session({ secret: 'secret', resave: false, saveUninitialized: true }))
+    .use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
     .use(passport.initialize())
     .use(passport.session())
-    .use('/', require('./routes'))
+    .use((req, res, next) => {
+    res.setHeader('Acess-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+    })
     .use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }))
     .use(cors({ origin: '*' }))
+    .use('/', require('./routes'))
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
@@ -46,13 +52,12 @@ passport.serializeUser((user, done) => {
   app.get('/', (req, res) => {
     res.send(
       req.session.user !== undefined
-        ? `Logged in as ${req.session.user.displayName}`
+        ? `Logged in as ${req.session.user.clientID}`
         : 'Logged Out'
     )
   });
   
-app.get(
-'/github/callback',
+app.get('/github/callback',
 passport.authenticate('github', {
     failureRedirect: '/api-docs',
     session: false

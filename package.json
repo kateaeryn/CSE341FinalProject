@@ -6,7 +6,7 @@
   "author": "David Aviles, Christopher Aceituno, Kate Christensen, Patrick Armani, Sigrid Vidal",
   "license": "ISC",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server.js",
     "swagger": "node ./swagger.js"
   },
@@ -26,6 +26,8 @@
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
   }
 }

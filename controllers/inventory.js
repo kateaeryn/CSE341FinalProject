@@ -3,9 +3,15 @@ const Inventory = require('../models/inventory.js');
 
 const getAll = async (req, res) => {
     //#swagger.tags=['Look at all our groceries. 🛒']
-    const groceries = await Inventory.find();
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(groceries);
+    
+  Inventory.find({})
+    .then((data) => {
+      res.send(data);
+    })
+      .catch((err) => {
+        res.status(500).send({ message: err.message || 'There was an issue getting the groceries' });
+    })
+    
   };
   
 const getSingleProduct = async (req, res) => {
@@ -22,10 +28,10 @@ const getSingleProduct = async (req, res) => {
 
 const newProduct = async (req, res) => {
     //#swagger.tags=['Look at all our groceries. 🛒']
-    if (!req.body.productName || !req.body.price || !req.body.category || !req.body.sizeOptions || !req.body.productId||!req.body.label||!req.body.productImage) {
-        res.status(400).send({ message: 'Must include name, price, category, size, and product Id' });
-        return;
-    }
+    // if (!req.body.productName || !req.body.price || !req.body.category || !req.body.sizeOptions || !req.body.productId||!req.body.label||!req.body.productImage) {
+    //     res.status(400).send({ message: 'Must include name, price, category, size, and product Id' });
+    //     return;
+    // }
     const product = new Inventory(req.body);
     product.save()
         .then((data) => {

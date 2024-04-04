@@ -18,7 +18,7 @@ const GitHubStrategy = require('passport-github2').Strategy;
  * Middleware
  **************************/
 app.use(bodyParser.json())
-    .use(session({ secret: 'secret', resave: false, saveUninitialized: false }))
+    .use(session({ secret: 'secret', resave: false, saveUninitialized: true }))
     .use(passport.initialize())
     .use(passport.session())
     .use((req, res, next) => {

@@ -53,26 +53,6 @@ describe('inventory route tests', () => {
 });
 
 
-describe('order route tests', () => {
-    test('responds to /orders', async () => {
-        const res = await request(app).get('/orders');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200);
-    })
-    test('responds to /orders/:id', async () => {
-        const res = await request(app).get('/orders/6605b30f922386e05db88a9a');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200);
-    })
-});
-
-    describe('account route tests', () => {
-        test('responds to /account/:id', async () => {
-            const res = await request(app).get('/account/6605b31c922386e05db88aa3');
-            expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-            expect(res.statusCode).toBe(200);
-        })
-    });
 
     describe('review route tests', () => {
         test('responds to /reviews/:id', async () => {

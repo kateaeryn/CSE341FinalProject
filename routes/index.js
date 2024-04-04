@@ -41,7 +41,7 @@ router.delete('/inventory/:id', isAuthenticated, invCont.deleteProduct);
 
 //order routes
 router.get('/orders', isAuthenticated, ordCont.getOrders);
-router.get('/orders/:id',  ordCont.getOrderById);
+router.get('/orders/:id',  isAuthenticated, ordCont.getOrderById);
 router.post('/orders', isAuthenticated, vOrder, ordCont.newOrder)
 router.put('/orders/:id', isAuthenticated, vOrder, ordCont.updateOrder);
 router.delete('/orders/:id', isAuthenticated, ordCont.deleteOrder);

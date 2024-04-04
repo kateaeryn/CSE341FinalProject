@@ -8,6 +8,17 @@ const getAll = async (req, res) => {
     res.status(200).json(groceries);
   };
   
+const getSingleProduct = async (req, res) => {
+  //#swagger.tags['Look at all our groceries. 🛒]
+    const productId = req.params.id;
+    Inventory.find({ _id: productId })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message || "Something went wrong getting the product" })
+        });
+};
 
 const newProduct = async (req, res) => {
     //#swagger.tags=['Look at all our groceries. 🛒']
@@ -72,4 +83,4 @@ const updateProduct = async (req, res, next) => {
     }
 };
   
-module.exports = { newProduct, updateProduct, getAll, deleteProduct };
+module.exports = { getSingleProduct, newProduct, updateProduct, getAll, deleteProduct };

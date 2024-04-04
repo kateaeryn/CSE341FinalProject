@@ -1,5 +1,23 @@
 const Order = require('../models/orders.js');
 
+const getOrders = async (req, res) => {
+    //#swagger.tags=[orders]
+    const groceries = await Order.find();
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(groceries);
+  };
+
+const getOrderById = async (req, res) => {
+    //#swagger.tags[orders]
+    const orderId = req.params.id;
+    Order.find({ _id: orderId })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({ message: err.message || "Something went wrong getting the order" })
+        });
+};
 
 const newOrder = async (req, res) => {
      //#swagger.tags=[Your orders]
@@ -51,4 +69,4 @@ const deleteOrder = async (req, res) => {
     }
 };
 
-module.exports = {newOrder, updateOrder, deleteOrder};
+module.exports = {getOrders, getOrderById, newOrder, updateOrder, deleteOrder};

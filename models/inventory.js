@@ -10,24 +10,24 @@ const inventorySchema = mongoose.Schema({
         required: true
     },
     label: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required: true
     },
     category: {
         type: String,
         required: true
     },
     sizeOptions: {
-        type: Number,
+        type: String,
         required: true
     },
-    SKU: {
+    productId: {
         type: Number,
         required: true
     },
     productImage: {
-        data: Buffer,
-        contentType: String
+        type: String,
+        required:true
     }
 
 

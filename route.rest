@@ -1,6 +1,2 @@
-// localhost
-### GET all inventory
-GET http://localhost:5500/inventory
-
-### GET Inventory by ID
-GET http://localhost:5500/inventory/
+###get all inventory
+GET http://localhost:5500/

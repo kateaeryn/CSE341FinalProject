@@ -1,291 +1,453 @@
 {
-  "openapi": "3.0.3",
+  "swagger": "2.0",
   "info": {
-    "title": "little BIG Store",
-    "description": "An online grocery store",
-    "version": "1.0.11"
+    "title": "Library API",
+    "description": "Library API",
+    "version": "1.0.0"
   },
-  "host": "localhost:5500",
+  
+  "host": "cse341finalproject-fmos.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
-  ],
-  "tags": [
-    {
-      "name": "inventory",
-      "description": "Access to inventory items: full list, by category and by individual product"
-    },
-    {
-        "name": "orders",
-        "description": "Access to orders: place, view, edit or delete orders"
-    },
-    {
-      "name": "account",
-      "description": "Operations about user"
-    },
-    {
-        "name": "reviews",
-        "description": "Access to write, edit or delete reviews"
-    }   
+    
+  "https"
   ],
   "paths": {
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/": {
       "get": {
-        "description": "Store front",
+        "description": "",
         "responses": {
           "200": {
-            "description": "successful operation"
-          },
-          "404": {
-            "description": "page not found"
+            "description": "OK"
           }
         }
       }
     },
-    "/inventory/{categoryId}": {
-        "get": {
-            "tags": ["inventory"],
-        "description": "Provides list of inventory categories",
-        "parameters": [
-            {
-                "name": "categoryId",
-                "in": "path",
-                "required": true,
-                "type": "string"
-            }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "category not found"
-          }
-        }
-      }
-    },
-    "/inventory":{
-        "get": {
-        "tags": ["inventory"],
-        "description": "All inventory available in the store",
-        "responses": {
-            "200": {
-                "description": "successful operation"
-            },
-            "404": {
-                "description": "product not found"
-            }
-            }
-        },
-        "post": {
-          "tags": ["inventory"],
-          "description": "create new inventory item",
-          "responses": {
-            "200": {
-                "description": "successful operation"
-            },
-            "422": {
-                "description": "product not created"
-            }
-            }
-        }
-        },
-    "/inventory/{productId}": {
+    "/inventory": {
       "get": {
         "tags": [
-          "inventory"
+          "Look at all our groceries. 🛒"
         ],
-        "description": "loads products by id",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Look at all our groceries. 🛒"
+        ],
+        "description": "",
         "parameters": [
           {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-              "type": "string"
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "productName": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "sizeOptions": {
+                  "example": "any"
+                },
+                "productId": {
+                  "example": "any"
+                },
+                "label": {
+                  "example": "any"
+                },
+                "productImage": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "product not found"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/inventory/{id}": {
+      "put": {
+        "tags": [
+          "Look at all our groceries. 🛒"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "productName": {
+                  "example": "any"
+                },
+                "label": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "sizeOptions": {
+                  "example": "any"
+                },
+                "productId": {
+                  "example": "any"
+                },
+                "productImage": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
         "tags": [
-          "inventory"
+          "Look at all our groceries. 🛒"
         ],
-        "description": "delete an inventory item",
+        "description": "",
         "parameters": [
           {
-            "name": "productId",
+            "name": "id",
             "in": "path",
             "required": true,
-              "type": "string"
-          }
-        ],
-        "responses": {
-            "200": {
-                "description": "Item successfully deleted"
-            },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "product not found"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "inventory"
-        ],
-        "description": "edit an inventory item",
-        "parameters": [
-          {
-            "name": "productId",
-            "in": "path",
-            "required": true,
-              "type": "string"
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful update"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "product not found"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/orders": {
-      "post": {
-        "tags": [
-          "orders"
-        ],
-        "description": "place a new grocery order",
+      "get": {
+        "tags": ["Order Up!"],
+        "description": "",
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Bad Request"
           },
-          "422": {
-            "description": "Validation exception"
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order Up!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "example": "any"
+                },
+                "items": {
+                  "example": "any"
+                },
+                "orderTotal": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/orders/{orderId}": {
-      "get": {
-        "tags": [
-          "orders"
-        ],
-        "description": "get a specific order by id",
+    "/orders/{id}": {
+      "put": {
+        "tags": ["Order Up!"],
+        "description": "",
         "parameters": [
           {
-            "name": "orderId",
+            "name": "id",
             "in": "path",
             "required": true,
-              "type": "string"
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "Order not found"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "delete": {
-        "tags": [
-          "orders"
-        ],
-        "description": "delete an order",
+        "tags": ["Order Up!"],
+        "description": "",
         "parameters": [
           {
-            "name": "orderId",
+            "name": "id",
             "in": "path",
             "required": true,
-              "type": "string"
+            "type": "string"
           }
         ],
         "responses": {
-            "200": {
-                "description": "successful deletion"
-            },
-          "400": {
-            "description": "Invalid ID supplied"
+          "200": {
+            "description": "OK"
           },
-          "404": {
-            "description": "Order not found"
-          }
-        }
-      },
-    "put": {
-        "tags": [
-          "orders"
-        ],
-        "description": "edit an order",
-        "parameters": [
-          {
-            "name": "orderId",
-            "in": "path",
-            "required": true,
-              "type": "string"
-          }
-        ],
-        "responses": {
-            "200": {
-                "description": "successful update"
-            },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "Order not found"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
-  "/account": {
-      "get": {
-        "tags": [
-          "account"
+    "/reviews": {
+      "post": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "example": "any"
+                },
+                "productName": {
+                  "example": "any"
+                },
+                "productId": {
+                  "example": "any"
+                },
+                "reviewText": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
-        "description": "create list of all accounts",
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "OK"
           },
-          "404": {
-            "description": "error accessing account list"
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/reviews/{id}": {
+      "put": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
-      "post": {
-        "tags": [
-          "account"
+      "get": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Review it here!"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
         ],
-        "description": "create a new account",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/account": {
+      "post": {
+        "tags": ["Account Access"],
+        "description": "",
         "parameters": [
           {
             "name": "body",
@@ -304,95 +466,62 @@
                 },
                 "password": {
                   "example": "any"
+                }
               }
             }
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation"
-          },
-          "422": {
-            "description": "validation exception"
-          }
-        }
-      }
-    },
-    
-    "/account/login": {
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "description": "log in to user account",
-        "parameters": [
-          {
-            "name": "username",
-            "in": "query",
-            "description": "The user name for login",
-            "required": false,
-              "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "The password for login in clear text",
-            "required": false,    
-              "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation"
-              },
-          "400": {
-            "description": "Invalid username/password supplied"
-          }
-        }
-      }
-    },
-    "/account/logout": {
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "description": "log user out of account",
-        "responses": {
-          "200": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/account/{username}":{
-      "get": {
-        "tags": [
-          "account"
-        ],
-        "description": "Access account information",
-        "responses": {
-          "200": {
-            "description": "successful  operation"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid username supplied"
+            "description": "Bad Request"
           },
-          "404": {
-            "description": "no account found with that username"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
-        },
+        }
+      }
+    },
+    "account/{id}": {
+      "get": {
+        "tags": ["Account Access"],
+        "description": "Access account details",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+
       "put": {
-        "tags": [
-          "account"
-        ],
-        "description": "Edit user account",
+        "tags": ["Account Access"],
+        "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
-              "type": "string"
+            "type": "string"
           }
         ],
         "responses": {
@@ -413,17 +542,16 @@
           }
         }
       },
+      
       "delete": {
-        "tags": [
-          "account"
-        ],
-        "description": "deleting a user account",
+        "tags": ["Account Access"],
+        "description": "",
         "parameters": [
           {
-            "name": "username",
+            "name": "id",
             "in": "path",
             "required": true,
-              "type": "string"
+            "type": "string"
           }
         ],
         "responses": {
@@ -436,116 +564,12 @@
           "401": {
             "description": "Unauthorized"
           },
-          "412": {
-            "description": "Precondition Failed"
-          },
           "500": {
             "description": "Internal Server Error"
           }
         }
-      }
-    }
-  },
-    "/reviews": {
-      "post": {
-        "tags": [
-          "reviews"
-        ],
-        "description": "create a review for a grocery item",
-        "parameters": [
-            {
-                "name": "body",
-                "in": "body",
-                "schema": {
-                    "type": "object",
-                    "properties": {
-                        "productName": {
-                        },
-                        "price": {},
-                        "label": {},
-                        "category": {},
-                        "sizeOptions": {},
-                        "SKU": {},
-                        "productImage": {}
-                    }
-                }
-            }
-        ],
-       "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "reviews"
-        ],
-        "description": "delete a review",
-        "parameters": [
-          {
-            "name": "reviewId",
-            "in": "path",
-            "required": true,
-              "type": "string"
-          }
-        ],
-        "responses": {
-            "200": {
-                "description": "successful deletion"
-            },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "review not found"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "reviews"
-        ],
-        "description": "edit a review",
-        "parameters": [
-          {
-            "name": "reviewId",
-            "in": "path",
-            "required": true,
-              "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "412": {
-            "description": "Precondition Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    }
       }
     }
     
+  }
+}

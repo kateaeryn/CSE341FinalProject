@@ -159,6 +159,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Look at all our groceries. 🛒"
+        ],
         "description": "",
         "parameters": [
           {
@@ -186,7 +189,7 @@
     },
     "/orders": {
       "get": {
-        "tags": [],
+        "tags": ["Look at all our order!"],
         "description": "",
         "produces": [
           "application/json"
@@ -198,7 +201,7 @@
         }
       },
       "post": {
-        "tags": [],
+        "tags": ["Look at all our order!"],
         "description": "",
         "parameters": [
           {
@@ -241,7 +244,7 @@
     },
     "/orders/{id}": {
       "get": {
-        "tags": [],
+        "tags": ["Look at all our order!"],
         "description": "",
         "parameters": [
           {
@@ -261,7 +264,7 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": ["Look at all our order!"],
         "description": "",
         "parameters": [
           {
@@ -290,6 +293,7 @@
         }
       },
       "delete": {
+        "tags": ["Look at all our order!"],
         "description": "",
         "parameters": [
           {
@@ -317,7 +321,7 @@
     },
     "/reviews/{id}": {
       "get": {
-        "tags": [],
+        "tags": ["Look at all our reviews!"],
         "description": "",
         "parameters": [
           {
@@ -337,7 +341,7 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": ["Look at all our reviews!"],
         "description": "",
         "parameters": [
           {
@@ -366,6 +370,7 @@
         }
       },
       "delete": {
+        "tags": ["Look at all our reviews!"],
         "description": "",
         "parameters": [
           {
@@ -393,7 +398,7 @@
     },
     "/reviews": {
       "post": {
-        "tags": [],
+        "tags": ["Look at all our reviews!"],
         "description": "",
         "parameters": [
           {
@@ -439,6 +444,7 @@
     },
     "/account/{id}": {
       "get": {
+        "tags": ["Check out our accounts"],
         "description": "",
         "parameters": [
           {
@@ -458,7 +464,7 @@
         }
       },
       "put": {
-        "tags": [],
+        "tags": ["Check out our accounts"],
         "description": "",
         "parameters": [
           {
@@ -487,6 +493,7 @@
         }
       },
       "delete": {
+        "tags": ["Check out our accounts"],
         "description": "",
         "parameters": [
           {
@@ -514,7 +521,7 @@
     },
     "/account": {
       "post": {
-        "tags": [],
+        "tags": ["Check out our accounts"],
         "description": "",
         "parameters": [
           {
@@ -554,16 +561,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }

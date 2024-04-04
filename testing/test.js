@@ -1,14 +1,14 @@
-'use strict';
+
 const mongoose = require('mongoose');
-const dataBase = require('../models/index');
 const request = require('supertest');
-const express = require('express');
 const router = require('../routes/index');
-const app = new express();
+const dataBase = require('../models/index');
+const express = require('express');
+const app = new express;
+
 app.use('/', router);
 
-describe('Testing', () => {
-    beforeAll((done) => {
+beforeEach((done) => {
         mongoose.connect(dataBase.URL);
         let db = mongoose.connection;
         db.on('error', (err) => {
@@ -20,25 +20,38 @@ describe('Testing', () => {
     })
     it("has some property", () => {
         expect(1).toBe(1);
-    })
-    
 
-// describe('login/out routes test', () => {
-      
-//     });
+});
+    
+afterEach( (done) => {
+    mongoose.connection.close();
+    done();
+});
+
+describe('home route', () => {
+    test('home route', async () => {
+        const res = await request(app).get('/');
+        expect(res.statusCode).toBe(200);
+        expect(res.text).toEqual('Welcome to the little BIG Store');
+    })
+});
+
 describe('inventory route tests', () => {
     test('responds to /inventory', async () => {
         const res = await request(app).get('/inventory');
         expect(res.header['content-type']).toBe('application/json; charset=utf-8');
         expect(res.statusCode).toBe(200);
-    })
-    test('responds to /inventory/:id', async () => {
-        const res = await request(app).get('/inventory/6605b308922386e05db88a93');
-        expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(200);
-    })
+    });
     
+    describe('inventory item route test', () => {
+        test('responds to /inventory/:id', async () => {
+            const res = await request(app).get('/inventory/6605b308922386e05db88a93');
+            expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+            expect(res.statusCode).toBe(200);
+        })
+    })
 });
+
 
 describe('order route tests', () => {
     test('responds to /orders', async () => {
@@ -69,8 +82,3 @@ describe('order route tests', () => {
         })
     });
 
-afterAll(done => {
-    mongoose.connection.close();
-    done();
-});
-});

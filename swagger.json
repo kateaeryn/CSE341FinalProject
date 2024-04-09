@@ -61,6 +61,38 @@
           "Look at all our groceries. 🛒"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "productName": {
+                  "example": "any"
+                },
+                "label": {
+                  "example": "any"
+                },
+                "category": {
+                  "example": "any"
+                },
+                "sizeOptions": {
+                  "example": "any"
+                },
+                "productId": {
+                  "example": "any"
+                },
+                "productImage": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
